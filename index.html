@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Australia Weather — Week 10</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 32px; }
+    .vis { max-width: 900px; margin-bottom: 60px; }
+  </style>
+</head>
+
+<body>
+  <h1>Australia Weather (2016–2017)</h1>
+  <p>This page shows two visualisations: the line chart of MaxTemp and the bar chart of average MinTemp.</p>
+
+  <h2> Max Temperature Trends</h2>
+  <div id="vis1" class="vis"></div>
+
+  <h2>Average Min Temperature by Location</h2>
+  <div id="vis2" class="vis"></div>
+
+  <script>
+    vegaEmbed('#vis1', 'week10_homework.json', { actions: false })
+      .then(() => console.log('Line chart loaded'))
+      .catch(console.error);
+
+    vegaEmbed('#vis2', 'mintemp.json', { actions: false })
+      .then(() => console.log('Bar chart loaded'))
+      .catch(console.error);
+  </script>
+</body>
+</html>

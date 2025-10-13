@@ -1,0 +1,49 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 500,
+  "height": 400,
+  "title": "Australia Weather",
+  "data": { "url": "weatherAUS.csv" },
+
+  "transform": [
+        { "filter": "year(datum.Date) >= 2016 && year(datum.Date) <= 2017" },
+        { "filter": { "param": "Location_selection" } }
+      ],
+
+  "layer": [
+    {
+      "params": [
+        {
+          "name": "Location_selection",
+          "select": { "type": "point", "fields": ["Location"] },
+          "bind": "legend"
+        }
+      ],
+  
+      "mark": "line",
+      "encoding": {
+        "x": { "field": "Date", "type": "temporal", "title": "Date" },
+        "y": { "field": "MaxTemp", "type": "quantitative" },
+        "color": { "field": "Location", "type": "nominal" },
+        "tooltip": [{ "field": "Location", "type": "nominal" }]
+      }
+    },
+
+    {
+
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "baseline": "middle",
+        "dx": -60,
+        "dy": -190,
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "color": "#d62728"
+      },
+      "encoding": {
+        "text": { "value": "Katherine's MaxTemp is generally higher than others" }
+      }
+    }
+  ]
+}
