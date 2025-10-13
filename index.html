@@ -10,7 +10,8 @@
 
   <style>
     body { font-family: system-ui, Arial, sans-serif; margin: 32px; }
-    .vis { max-width: 900px; margin-bottom: 60px; }
+    .vis { max-width: 900px; margin-bottom: 20px; }
+    p.note { font-size: 16px; color: #333; margin-bottom: 60px; }
   </style>
 </head>
 
@@ -18,11 +19,12 @@
   <h1>Australia Weather (2016–2017)</h1>
   <p>This page shows two visualisations: the line chart of MaxTemp and the bar chart of average MinTemp.</p>
 
-  <h2> Max Temperature Trends</h2>
+  <h2>Max Temperature Trends</h2>
   <div id="vis1" class="vis"></div>
 
   <h2>Average Min Temperature by Location</h2>
   <div id="vis2" class="vis"></div>
+  <p class="note"><b>Observation:</b> Darwin’s minimum temperature is generally higher than that of other locations.</p>
 
   <script>
     vegaEmbed('#vis1', 'week10_homework.json', { actions: false })
@@ -35,3 +37,4 @@
   </script>
 </body>
 </html>
+
