@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Average Temperature Difference (MaxTemp − MinTemp) by State",
+  "data": {
+    "url": "weatherAUS.csv",
+    "format": { "type": "csv", "parse": { "Date": "date" } }
+  },
+  "transform": [
+    {
+      "lookup": "Location",
+      "from": {
+        "data": { "url": "location_state.csv" },
+        "key": "Location",
+        "fields": ["State"]
+      }
+    },
+    {
+      "calculate": "toNumber(datum.MaxTemp) - toNumber(datum.MinTemp)",
+      "as": "TempDiff"
+    },
+    { "filter": "isValid(datum.TempDiff) && isValid(datum.State)" },
+    {
+      "aggregate": [
+        { "op": "mean", "field": "TempDiff", "as": "AvgTempDiff" }
+      ],
+      "groupby": ["State"]
+    }
+  ],
+  "mark": {
+    "type": "line",
+    "point": true
+  },
+  "encoding": {
+    "x": {
+      "field": "State",
+      "type": "nominal",
+      "title": "State",
+      "sort": "-y"
+    },
+    "y": {
+      "field": "AvgTempDiff",
+      "type": "quantitative",
+      "title": "Average Temperature Difference (°C)"
+    },
+    "tooltip": [
+      { "field": "State", "type": "nominal" },
+      {
+        "field": "AvgTempDiff",
+        "type": "quantitative",
+        "format": ".2f",
+        "title": "Average Temp Difference (°C)"
+      }
+    ]
+  },
+  "width": 600,
+  "height": 350
+}

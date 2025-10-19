@@ -1,6 +1,6 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Average MinTemp by State (All Years)",
+  "title": "Average MaxTemp by State (All Years)",
   "data": {
     "url": "weatherAUS.csv",
     "format": { "type": "csv", "parse": { "Date": "date" } }
@@ -14,8 +14,8 @@
         "fields": ["State"]
       }
     },
-    { "calculate": "toNumber(datum.MinTemp)", "as": "MinTempNum" },
-    { "filter": "isValid(datum.MinTempNum)" }
+    { "calculate": "toNumber(datum.MaxTemp)", "as": "MaxTempNum" },
+    { "filter": "isValid(datum.MaxTempNum)" }
   ],
   "mark": "bar",
   "encoding": {
@@ -28,23 +28,23 @@
     },
     "y": {
       "aggregate": "mean",
-      "field": "MinTempNum",
+      "field": "MaxTempNum",
       "type": "quantitative",
-      "title": "Average MinTemp (°C)"
+      "title": "Average MaxTemp (°C)"
     },
     "color": { "field": "State", "type": "nominal", "legend": null },
     "tooltip": [
       { "field": "State", "type": "nominal" },
       {
         "aggregate": "mean",
-        "field": "MinTempNum",
+        "field": "MaxTempNum",
         "type": "quantitative",
-        "title": "Avg MinTemp (°C)",
+        "title": "Avg MaxTemp (°C)",
         "format": ".2f"
       },
       {
         "aggregate": "count",
-        "field": "MinTempNum",
+        "field": "MaxTempNum",
         "type": "quantitative",
         "title": "Days Count"
       }
