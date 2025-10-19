@@ -9,30 +9,49 @@
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
   <style>
-    body { font-family: system-ui, Arial, sans-serif; margin: 32px; }
+    body { font-family: system-ui, Arial, sans-serif; margin: 32px; background-color: #f0f8ff;}
     .vis { max-width: 900px; margin-bottom: 20px; }
     p.note { font-size: 16px; color: #333; margin-bottom: 60px; }
+    h1 {
+  font-size: 72px;
+  font-weight: 800;
+  margin: 40px auto;
+  text-align: center;  
+  color:#326089;
+  display: inline-block;
+}
+
   </style>
 </head>
 
 <body>
-  <h1>Australia Weather (2016–2017)</h1>
+  <img src="weather.png"
+     style="display:block; margin:20px auto; width:700px; ">
+
+  <h1>Australia Weather </h1>
   <p>This page shows two visualisations: the line chart of MaxTemp and the bar chart of average MinTemp.</p>
 
-  <h2>Max Temperature Trends</h2>
+  <h2>Average Max Temperature by State</h2>
   <div id="vis1" class="vis"></div>
 
-  <h2>Average Min Temperature by Location</h2>
+  <h2>Average Min Temperature by State</h2>
   <div id="vis2" class="vis"></div>
   <p class="note"><b>Observation:</b> Darwin’s minimum temperature is generally higher than that of other locations.</p>
+  
+  <h2>Average Temp Difference</h2>
+  <div id="vis3" class="vis"></div>
 
   <script>
-    vegaEmbed('#vis1', 'week10_homework.json', { actions: false })
-      .then(() => console.log('Line chart loaded'))
+    vegaEmbed('#vis1', 'maxtemp.json', { actions: false })
+      .then(() => console.log('Bar chart loaded'))
       .catch(console.error);
 
     vegaEmbed('#vis2', 'mintemp.json', { actions: false })
       .then(() => console.log('Bar chart loaded'))
+      .catch(console.error);
+
+    vegaEmbed('#vis3', 'AvgTempDiff.json', { actions: false })
+      .then(() => console.log('Line chart loaded'))
       .catch(console.error);
   </script>
 </body>
