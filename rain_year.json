@@ -1,0 +1,47 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Average Daily Rainfall by State (Select Year)",
+  "data": {
+    "url": "weatherAUS.csv",
+    "format": { "type": "csv", "parse": { "Date": "date" } }
+  },
+  "params": [
+    {
+      "name": "YearParam",
+      "select": { "type": "point", "fields": ["Year"] },
+      "bind": {
+        "input": "select",
+        "options": [2008,2009,2010,2011,2012,2013,2014,2015,2016,2017],
+        "name": "Year: "
+      },
+      "value": 2016
+    }
+  ],
+  "transform": [
+    { "calculate": "year(datum.Date)", "as": "Year" },
+    {
+      "lookup": "Location",
+      "from": { "data": { "url": "location_state.csv" }, "key": "Location", "fields": ["State"] }
+    },
+    { "calculate": "toNumber(datum.Rainfall)", "as": "RainfallNum" },
+    { "filter": "isValid(datum.RainfallNum) && isValid(datum.State)" },
+    { "filter": { "param": "YearParam" } }
+  ],
+  "mark": { "type": "bar", "tooltip": true },
+  "encoding": {
+    "x": { "field": "State", "type": "nominal", "title": "State", "sort": "-y" },
+    "y": {
+      "aggregate": "mean",
+      "field": "RainfallNum",
+      "type": "quantitative",
+      "title": "Average Daily Rainfall (mm)"
+    },
+    "tooltip": [
+      { "field": "State", "type": "nominal", "title": "State" },
+      { "aggregate": "mean", "field": "RainfallNum", "type": "quantitative", "title": "Mean (mm)", "format": ".2f" },
+      { "aggregate": "count", "field": "RainfallNum", "type": "quantitative", "title": "Days" }
+    ]
+  },
+  "width": 700,
+  "height": 380
+}

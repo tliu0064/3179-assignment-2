@@ -5,6 +5,39 @@
     "url": "weatherAUS.csv",
     "format": { "type": "csv", "parse": { "Date": "date" } }
   },
+  "params": [
+    { "name": "StateSelection", 
+    "value": "All",
+  "bind": {
+"input": "select",
+"options": [
+"All",
+"NT",
+"QLD",
+"NSW",
+"WA",
+"SA",
+"External",
+"VIC",
+"TAS",
+"ACT"
+],
+"labels":[
+"All",
+"NT",
+"QLD",
+"NSW",
+"WA",
+"SA",
+"External",
+"VIC",
+"TAS",
+"ACT"
+],
+"name": "State Selection: "
+}
+}
+  ],
   "transform": [
     {
       "lookup": "Location",
@@ -14,6 +47,7 @@
         "fields": ["State"]
       }
     },
+    { "filter": "StateSelection == 'All' || datum.State == StateSelection" },
     { "calculate": "toNumber(datum.MaxTemp)", "as": "MaxTempNum" },
     { "filter": "isValid(datum.MaxTempNum)" }
   ],

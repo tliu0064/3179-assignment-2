@@ -26,6 +26,8 @@
       "groupby": ["State"]
     }
   ],
+  "layer": [
+  {
   "mark": {
     "type": "line",
     "point": true
@@ -51,7 +53,21 @@
         "title": "Average Temp Difference (°C)"
       }
     ]
+  }
   },
+  {
+      "mark": {
+        "type": "text",
+        "text": "NT has the highest temperature difference",
+        "x": 140,
+        "y": 5,
+        "fontSize": 14,
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "color": "#d22020"
+      }
+    }
+  ],
   "width": 700,
   "height": 350
 }
