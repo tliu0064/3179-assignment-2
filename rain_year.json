@@ -1,20 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": "Average Daily Rainfall by State (Select Year)",
+  "title": "Average Daily Rainfall by State (Year Slider)",
   "data": {
     "url": "weatherAUS.csv",
     "format": { "type": "csv", "parse": { "Date": "date" } }
   },
   "params": [
     {
-      "name": "YearParam",
-      "select": { "type": "point", "fields": ["Year"] },
-      "bind": {
-        "input": "select",
-        "options": [2008,2009,2010,2011,2012,2013,2014,2015,2016,2017],
-        "name": "Year: "
-      },
-      "value": 2016
+      "name": "YearSel",
+      "value": 2016,
+      "bind": { "input": "range", "min": 2008, "max": 2017, "step": 1, "name": "Year: " }
     }
   ],
   "transform": [
@@ -25,11 +20,16 @@
     },
     { "calculate": "toNumber(datum.Rainfall)", "as": "RainfallNum" },
     { "filter": "isValid(datum.RainfallNum) && isValid(datum.State)" },
-    { "filter": { "param": "YearParam" } }
+    { "filter": "datum.Year == YearSel" }
   ],
-  "mark": { "type": "bar", "tooltip": true },
+  "mark": { "type": "line", "point": true },
   "encoding": {
-    "x": { "field": "State", "type": "nominal", "title": "State", "sort": "-y" },
+    "x": { 
+      "field": "State", 
+      "type": "nominal", 
+      "title": "State", 
+      "sort": "-y" 
+    },
     "y": {
       "aggregate": "mean",
       "field": "RainfallNum",
