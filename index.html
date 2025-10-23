@@ -19,8 +19,21 @@
   text-align: center;  
   color:#326089;
 }
+h2 {
+  text-align: center;
+  color: #5f5dcb;
+}
+.row {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+  max-width: 1000px;     
+  margin: 24px auto;    
+}
+.chart { flex: 2; }
+.aside { flex: 1; font-size: 16px; line-height: 1.6; color:#2e2c84; }
 
-  </style>
+</style>
 </head>
 
 <body>
@@ -36,7 +49,10 @@
   This diversity results in distinct seasonal patterns across states and territories.
   </p>
   <h2>Average Temp by Country</h2>
-  <div id="vis1" class="vis"></div>
+  <div class="row">
+  <div id="vis1" class="vis chart"></div>
+  </div>
+</div>
   <p style="text-align:center; font-size:20px; max-width:800px; margin:14px auto; color:#2e2c84;">
   The map illustrates the average temperature across countries worldwide. Regions near the equator, 
   such as central Africa and Southeast Asia, experience the highest temperatures, shown in deep red. In contrast, 
@@ -47,18 +63,60 @@
   </p>
 
   <h2>Average Max Temperature by State</h2>
-  <div id="vis2" class="vis"></div>
+<div class="row">
+  <div id="vis2" class="vis chart"></div>
+  <div class="aside">
+    <h3 style="margin:0 0 8px">Key takeaways</h3>
+    <p>
+      Average max temperatures across states sit mostly between <b>20–30 °C</b>.
+      The Northern Territory is warmest, while VIC/TAS/ACT are milder.
+      Overall Australia is warm but not extremely hot, especially in coastal areas.
+    </p>
+  </div>
+</div>
+
 
   <h2>Average Min Temperature by State</h2>
-  <div id="vis3" class="vis"></div> 
-  <p class="note"><b>Observation:</b> Darwin’s minimum temperature is generally higher than that of other locations.</p>
+  <div class="row">
+  <div id="vis3" class="vis chart"></div>
+  <div class="aside">
+    <h3 style="margin:0 0 8px">Key takeaways</h3>
+    <p>
+      Average minimum temperatures across states sit mostly between
+  <b>6–19 °C</b>. Queensland and the Northern Territory have the
+  warmest nights, while <b>TAS/ACT</b> are the coolest.
+  Overall, nights are generally mild in the major coastal states, but
+  become noticeably cooler in the south and inland during winter.
+    </p>
+  </div>
+</div>
 
 
   <h2>Average Temp Difference</h2>
-  <div id="vis4" class="vis"></div>
+  <div class="row">
+  <div id="vis4" class="vis chart"></div>
+  <div class="aside">
+    <h3 style="margin:0 0 8px">Key takeaways</h3>
+    <p>
+      Average max temperatures across states sit mostly between <b>20–30 °C</b>.
+      The Northern Territory is warmest, while VIC/TAS/ACT are milder.
+      Overall Australia is warm but not extremely hot, especially in coastal areas.
+    </p>
+  </div>
+</div>
 
   <h2>Average Daily Rainfall by State </h2>
-  <div id="vis5" class="vis"></div>
+  <div class="row">
+  <div id="vis5" class="vis chart"></div>
+  <div class="aside">
+    <h3 style="margin:0 0 8px">Key takeaways</h3>
+    <p>
+      Average max temperatures across states sit mostly between <b>20–30 °C</b>.
+      The Northern Territory is warmest, while VIC/TAS/ACT are milder.
+      Overall Australia is warm but not extremely hot, especially in coastal areas.
+    </p>
+  </div>
+</div>
 
   <h5>Author: Tong Liu </h5>
   <h5>Image 1 Source:https://www.firstlighttravel.com.au/australian-travel-guide/australian-weather-by-city-and-season </h5>
